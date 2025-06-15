@@ -51,22 +51,11 @@
     3.3 连接/断开容器到网络
         docker network connect <网络名> <容器ID或名称>  # 将容器连接到网络
         docker network disconnect <网络名> <容器ID或名称>  # 断开容器与网络的连接
-4.
-    4.1
-    4.2
-
-3. 连接/断开容器到网络
-bash
-docker network connect <网络名> <容器ID或名称>  # 将容器连接到网络
-docker network disconnect <网络名> <容器ID或名称>  # 断开容器与网络的连接
-四、存储管理
-1. 数据卷（Volume）
-bash
-docker volume create <卷名>  # 创建数据卷
-docker volume ls  # 列出所有卷
-docker volume rm <卷名>  # 删除数据卷
-使用卷挂载：docker run -v <卷名>:<容器路径> ...
-2. 绑定挂载（Bind Mount）
-bash
-docker run -v /主机路径:/容器路径 ...  # 直接挂载主机目录
-
+4.  存储管理
+    4.1 数据卷
+        docker volume create <卷名>  # 创建数据卷
+        docker volume ls  # 列出所有卷
+        docker volume rm <卷名>  # 删除数据卷
+        使用卷挂载：docker run -v <卷名>:<容器路径> ...
+    4.2 绑定挂载（Bind Mount）
+        docker run -v /主机路径:/容器路径 ...  # 直接挂载主机目录
