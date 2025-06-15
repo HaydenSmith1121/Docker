@@ -23,52 +23,38 @@
         -v 主机路径:容器路径：挂载卷。
         --name：指定容器名称。
         -e KEY=VALUE：设置环境变量。
-    2.2
-    2.3
-    2.4
-    2.5
-    2.6
-
-3.
-    3.1
-    3.2
-    3.3
+    2.2 查看容器
+        docker ps  # 查看运行中的容器
+        docker ps -a  # 查看所有容器（包括已停止的）
+        docker ps -q  # 仅显示容器 ID
+    2.3 停止/启动容器
+        docker stop <容器ID或名称>  # 停止容器
+        docker start <容器ID或名称>  # 启动已停止的容器
+        docker restart <容器ID或名称>  # 重启容器
+    2.4 进入容器
+        docker exec -it <容器ID或名称> /bin/bash  # 进入交互式终端
+        -it 表示交互模式，/bin/bash 是容器内的 Shell（根据镜像可能不同，如 /bin/sh）。
+    2.5 删除容器
+        docker rm <容器ID或名称>  # 删除已停止的容器
+        docker rm -f <容器ID或名称>  # 强制删除运行中的容器
+        docker rm $(docker ps -aq)  # 删除所有容器（慎用！）
+    2.6 查看日志
+        docker logs <容器ID或名称>  # 查看容器日志
+        docker logs -f <容器ID或名称>  # 实时跟踪日志（类似 tail -f）
+3.  网络管理
+    3.1 查看网络
+        docker network ls  # 列出所有网络
+        默认网络：bridge（默认）、host、none
+    3.2 创建/删除网络
+        docker network create <网络名>  # 创建自定义网络
+        docker network rm <网络名>  # 删除网络
+    3.3 连接/断开容器到网络
+        docker network connect <网络名> <容器ID或名称>  # 将容器连接到网络
+        docker network disconnect <网络名> <容器ID或名称>  # 断开容器与网络的连接
 4.
     4.1
     4.2
 
-2. 查看容器
-bash
-docker ps  # 查看运行中的容器
-docker ps -a  # 查看所有容器（包括已停止的）
-docker ps -q  # 仅显示容器 ID
-3. 停止/启动容器
-bash
-docker stop <容器ID或名称>  # 停止容器
-docker start <容器ID或名称>  # 启动已停止的容器
-docker restart <容器ID或名称>  # 重启容器
-4. 进入容器
-bash
-docker exec -it <容器ID或名称> /bin/bash  # 进入交互式终端
--it 表示交互模式，/bin/bash 是容器内的 Shell（根据镜像可能不同，如 /bin/sh）。
-5. 删除容器
-bash
-docker rm <容器ID或名称>  # 删除已停止的容器
-docker rm -f <容器ID或名称>  # 强制删除运行中的容器
-docker rm $(docker ps -aq)  # 删除所有容器（慎用！）
-6. 查看日志
-bash
-docker logs <容器ID或名称>  # 查看容器日志
-docker logs -f <容器ID或名称>  # 实时跟踪日志（类似 tail -f）
-三、网络管理
-1. 查看网络
-bash
-docker network ls  # 列出所有网络
-默认网络：bridge（默认）、host、none。
-2. 创建/删除网络
-bash
-docker network create <网络名>  # 创建自定义网络
-docker network rm <网络名>  # 删除网络
 3. 连接/断开容器到网络
 bash
 docker network connect <网络名> <容器ID或名称>  # 将容器连接到网络
