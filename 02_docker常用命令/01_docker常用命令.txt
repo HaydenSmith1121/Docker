@@ -1,0 +1,86 @@
+1.  镜像操作
+    1.1 搜索镜像
+        docker search <镜像名>:<标签>  # 例如：docker search nginx:latest
+    1.2 拉取镜像
+        docker pull <镜像名>:<标签>  # 例如：docker pull nginx:latest
+    1.3 查看本地镜像
+        docker images  # 列出所有镜像
+        docker images -q  # 仅显示镜像 ID
+    1.4 删除镜像
+        docker rmi <镜像ID或名称>  # 删除单个镜像
+        docker rmi $(docker images -q)  # 删除所有镜像（慎用！）
+    1.5 构建镜像
+        docker build -t <镜像名>:<标签> <Dockerfile路径>  # 例如：docker build -t myapp:v1 .
+    1.6 导出/导入镜像
+        docker save -o <输出文件> <镜像名>  # 保存镜像到文件
+        docker load -i <输入文件>  # 从文件加载镜像
+
+2.  容器操作
+    2.1 运行容器
+        docker run [选项] <镜像名> [命令]  # 例如：docker run -d -p 8080:80 --name web nginx
+        -d：后台运行（守护模式）。
+        -p 主机端口:容器端口：端口映射。
+        -v 主机路径:容器路径：挂载卷。
+        --name：指定容器名称。
+        -e KEY=VALUE：设置环境变量。
+    2.2
+    2.3
+    2.4
+    2.5
+    2.6
+
+3.
+    3.1
+    3.2
+    3.3
+4.
+    4.1
+    4.2
+
+2. 查看容器
+bash
+docker ps  # 查看运行中的容器
+docker ps -a  # 查看所有容器（包括已停止的）
+docker ps -q  # 仅显示容器 ID
+3. 停止/启动容器
+bash
+docker stop <容器ID或名称>  # 停止容器
+docker start <容器ID或名称>  # 启动已停止的容器
+docker restart <容器ID或名称>  # 重启容器
+4. 进入容器
+bash
+docker exec -it <容器ID或名称> /bin/bash  # 进入交互式终端
+-it 表示交互模式，/bin/bash 是容器内的 Shell（根据镜像可能不同，如 /bin/sh）。
+5. 删除容器
+bash
+docker rm <容器ID或名称>  # 删除已停止的容器
+docker rm -f <容器ID或名称>  # 强制删除运行中的容器
+docker rm $(docker ps -aq)  # 删除所有容器（慎用！）
+6. 查看日志
+bash
+docker logs <容器ID或名称>  # 查看容器日志
+docker logs -f <容器ID或名称>  # 实时跟踪日志（类似 tail -f）
+三、网络管理
+1. 查看网络
+bash
+docker network ls  # 列出所有网络
+默认网络：bridge（默认）、host、none。
+2. 创建/删除网络
+bash
+docker network create <网络名>  # 创建自定义网络
+docker network rm <网络名>  # 删除网络
+3. 连接/断开容器到网络
+bash
+docker network connect <网络名> <容器ID或名称>  # 将容器连接到网络
+docker network disconnect <网络名> <容器ID或名称>  # 断开容器与网络的连接
+四、存储管理
+1. 数据卷（Volume）
+bash
+docker volume create <卷名>  # 创建数据卷
+docker volume ls  # 列出所有卷
+docker volume rm <卷名>  # 删除数据卷
+使用卷挂载：docker run -v <卷名>:<容器路径> ...
+2. 绑定挂载（Bind Mount）
+bash
+docker run -v /主机路径:/容器路径 ...  # 直接挂载主机目录
+
